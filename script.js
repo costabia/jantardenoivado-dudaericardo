@@ -2,10 +2,9 @@ const invitation = document.querySelector("#invitation");
 const openButton = document.querySelector("#openButton");
 const frameAnimation = document.querySelector(".frame-animation");
 
-window.setTimeout(() => {
-  frameAnimation.src = frameAnimation.dataset.src;
-  frameAnimation.classList.add("is-loaded");
-}, 1500);
+// Recria a URL a cada carregamento para o GIF reiniciar mesmo quando o navegador usa cache.
+frameAnimation.addEventListener("load", () => frameAnimation.classList.add("is-loaded"), { once: true });
+frameAnimation.src = `${frameAnimation.dataset.src}?reload=${Date.now()}`;
 
 function openInvitation() {
   invitation.classList.add("is-open");
