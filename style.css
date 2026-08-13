@@ -1,5 +1,5 @@
 :root {
-  --wine: #5b0d0f;
+  --wine: #4b0a0c;
   --wine-dark: #3f0709;
   --cream: #fff9f3;
   --gold: #d7ae66;
@@ -35,7 +35,7 @@ button { font: inherit; }
 }
 
 .cover { z-index: 2; justify-content: space-between; }
-.details { z-index: 1; justify-content: center; opacity: 0; visibility: hidden; transform: scale(1.035); overflow-y: auto; }
+.details { z-index: 1; justify-content: center; opacity: 0; visibility: hidden; transform: scale(1.035); overflow: hidden; padding-left: 10px; padding-right: 10px; }
 .invitation.is-open .cover { opacity: 0; visibility: hidden; transform: scale(.97); }
 .invitation.is-open .details { opacity: 1; visibility: visible; transform: scale(1); }
 
@@ -51,8 +51,7 @@ button { font: inherit; }
 .names--cover { width: 100%; font-size: clamp(31px, 8.5vw, 66px); margin-top: -18px; white-space: nowrap; }
 
 .machine { position: relative; width: min(68vw, 310px); aspect-ratio: 948 / 1536; margin: -6px 0 0; }
-.frame-animation { display: block; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .65s ease; }
-.frame-animation.is-loaded { opacity: 1; }
+.frame-animation { display: block; width: 100%; height: 100%; object-fit: contain; opacity: 1; }
 
 @keyframes print {
   0%, 16% { transform: translate(-50%, -112%); opacity: 0; }
@@ -69,41 +68,86 @@ button { font: inherit; }
 
 .paperwork { position: relative; width: min(94vw, 440px); height: min(88vh, 650px); min-height: 560px; }
 .save-card, .letter-card { position: absolute; color: #252022; background: #f8f3ec; box-shadow: 0 14px 20px rgba(27, 0, 3, .32); }
-.save-card { z-index: 3; top: 9%;  width: 78%; aspect-ratio: 1.42; padding: 5% 5% 4%; animation: cardIn .95s .15s both; }
+.save-card { --rotation: -7deg; z-index: 3; top: 9%; width: 78%; aspect-ratio: 1.42; padding: 5% 5% 4%; opacity: 0; }
 .save-card img { display: block; width: 100%; height: 76%; object-fit: cover; filter: grayscale(1) contrast(.9); }
 .save-card__tiny { margin: 0 0 3%; font-size: clamp(5px, 1.5vw, 8px); letter-spacing: .12em; text-align: center; }
-.save-card__title { position: absolute; top: 39%; left: 8%; right: 8%; display: flex; align-items: baseline; justify-content: center; gap: 4px; color: #fbf7f0; font-family: Georgia, serif; font-size: clamp(22px, 7vw, 36px); letter-spacing: -.06em; text-shadow: 0 1px 3px #111; }
+.save-card__title { position: absolute; top: 39%; left: 8%; right: 8%; display: flex; align-items: baseline; justify-content: center; gap: 4px; color: #fbf7f0; font-family: Georgia, serif; font-size: clamp(22px, 7vw, 36px); letter-spacing: -.06em; text-shadow: none; }
 .save-card__title small { font-size: .3em; letter-spacing: .12em; }
 .save-card__names { margin: 3% 0 0; font-size: clamp(6px, 1.7vw, 9px); letter-spacing: .14em; text-align: center; }
-.letter-card { z-index: 2; top: 35%; left: 15%; width: 72%; min-height: 255px; padding: 8% 8% 7%; transform: rotate(5deg); animation: cardIn .95s .65s both; background: repeating-linear-gradient(#f8f3ec, #f8f3ec 38px, #d7cfd0 39px, #f8f3ec 40px); }
+.letter-card {
+  --rotation: 5deg;
+  z-index: 2;
+  top: 35%;
+  left: calc(15% - 5px);
+  width: calc(72% + 10px);
+  min-height: 255px;
+  padding: 8% 8% 7%;
+  transform: rotate(5deg);
+  opacity: 0;
+  background-color: #f6f0e6;
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, .42) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 74% 68%, rgba(151, 126, 101, .08) 0 1px, transparent 1.6px),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, .32), transparent 62%),
+    linear-gradient(112deg, rgba(126, 101, 77, .035), transparent 28%, rgba(255, 255, 255, .18) 64%, rgba(126, 101, 77, .025));
+  background-size: 17px 19px, 23px 25px, 100% 100%, 100% 100%;
+}
 .letter-card__cinzel { margin: 40px 0 0; font-family: var(--serif); font-size: clamp(9px, 2.8vw, 15px); letter-spacing: -.045em; text-align: center; }
-.letter-card__script { margin: 21px 0 20px; color: #843c48; font-family: var(--script); line-height: 1.05; text-align: center; }
-.letter-card__date { margin: 18px 0 0; font-family: var(--serif); font-size: clamp(10px, 2.7vw, 18px); letter-spacing: -.025em; line-height: 1.3; text-align: center; }
+.letter-card__script { margin: 21px 0 20px; color: #843c48; font-family: "Aston Script", var(--script); line-height: 1.05; text-align: center; white-space: nowrap; }
+.letter-card__date { margin: 18px 0 0; font-family: var(--serif); font-size: clamp(10px, 2.7vw, 18px); font-weight: 700; letter-spacing: -.025em; line-height: 1.3; text-align: center; }
 .letter-card__date span, .letter-card__date small { display: block; font-size: .9em; letter-spacing: -.015em; }
 .letter-card__date small { margin-top: 3px; text-transform: lowercase; }
-.detail-strip { position: absolute;
+.detail-strip { --rotation: 8deg; position: absolute;
     z-index: 4;
-    left: 56%;
+    left: 55%;
     top: 45%;
     width: 60%;
     filter: drop-shadow(0 12px 8px rgba(27, 0, 3, .55));
     transform: rotate(8deg);
-    animation: cardIn .95s 1.1s both;
+    opacity: 0;
   }
-.heart-charm { position: absolute; z-index: 5; right: 1%; top: 36%; width: 82px; height: 82px; transform: rotate(16deg); filter: drop-shadow(0 8px 5px rgba(20,0,3,.5)); animation: cardIn .95s 1.3s both; }
+.envelope {
+  position: absolute;
+  z-index: 1;
+  left: 4%;
+  top: 47%;
+  width: 92%;
+  filter: sepia(.16) saturate(1.08) hue-rotate(342deg) drop-shadow(0 13px 9px rgba(27, 0, 3, .42));
+  transform: rotate(-4deg);
+  opacity: 0;
+}
+.heart-charm { --rotation: 16deg; position: absolute; z-index: 5; right: 1%; top: 36%; width: 82px; height: 82px; transform: rotate(16deg); filter: drop-shadow(0 8px 5px rgba(20,0,3,.5)); opacity: 0; }
 .heart-charm span { display: grid; place-items: center; height: 100%; color: #d7d6d0; font-size: 65px; line-height: 1; -webkit-text-stroke: 2px #d7d6d0; }
-.detail-date { position: absolute; z-index: 6; top: 76%; left: 0; right: 10; margin: 25px 40px; color: #fff; font-family: var(--script); letter-spacing: .01em; text-align: center; animation: cardIn .95s 1.5s both; }
-@keyframes cardIn { from { opacity: 0; transform: translateY(24px) rotate(0); } to { opacity: 1; } }
+.detail-date { position: absolute; z-index: 6; top: 76%; left: 0; right: 0; margin: 25px 20px; color: #fff; font-family: var(--script); letter-spacing: .01em; text-align: center; opacity: 0; }
+@keyframes cardIn { from { opacity: 0; transform: translateY(24px) rotate(var(--rotation, 0deg)); } to { opacity: 1; transform: translateY(0) rotate(var(--rotation, 0deg)); } }
+
+.invitation.is-open .save-card { animation: cardIn .85s .15s both; }
+.invitation.is-open .letter-card { animation: cardIn .85s .45s both; }
+.invitation.is-open .detail-strip { animation: cardIn .85s .75s both; }
+.invitation.is-open .envelope { animation: cardIn .85s .9s both; }
+.invitation.is-open .heart-charm { animation: cardIn .85s 1s both; }
+.invitation.is-open .detail-date { --rotation: 0deg; animation: cardIn .85s 1.25s both; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(13px); } to { opacity: 1; transform: translateY(0); } }
 
 .cover > .eyebrow { animation: fadeUp 1s .2s both; }
 .cover > .names--cover { animation: fadeUp 1s .65s both; }
-.cover > .machine { animation: fadeUp 1.15s 1.1s both; }
+.cover > .machine { animation: fadeUp 1.15s 0s both; }
 .cover > .open-button { animation: fadeUp 1s 1.65s both; }
 
 @media (min-width: 600px) {
   .cover, .details { padding-top: 42px; padding-bottom: 36px; }
-  .machine { width: 300px; }
+  .names--cover { font-size: clamp(32px, 4.2vw, 42px); }
+  .machine { width: 220px; height: 356px; flex: 0 0 356px; }
+  .open-button { margin-bottom: 4px; }
   .save-card { top: 5%; }
+}
+@media (max-width: 599px) {
+  .save-card { top: 5%; }
+  .paperwork { width: min(94vw, 440px); height: 86svh; min-height: 0; }
+  .letter-card__script { font-size: clamp(27px, 7.5vw, 36px); }
+  .detail-date {         left: 9%;
+        right: 10%;
+        font-size: clamp(13px, 4vw, 34px);
+        text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }

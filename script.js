@@ -1,10 +1,22 @@
 const invitation = document.querySelector("#invitation");
 const openButton = document.querySelector("#openButton");
-const frameAnimation = document.querySelector(".frame-animation");
 
-// Recria a URL a cada carregamento para o GIF reiniciar mesmo quando o navegador usa cache.
-frameAnimation.addEventListener("load", () => frameAnimation.classList.add("is-loaded"), { once: true });
-frameAnimation.src = `${frameAnimation.dataset.src}?reload=${Date.now()}`;
+function restartFrameAnimation() {
+  const current = document.querySelector(".frame-animation");
+  if (!current) return;
+
+  // Reassigning the URL with a cache-busting query forces animated GIFs
+  // to start from frame one on every page load, including mobile browsers.
+  current.src = `assets/frame-animation.svg?restart=${Date.now()}`;
+}
+
+// Start/restart immediately; waiting for DOMContentLoaded made the first
+// animation frame appear late on some mobile browsers.
+restartFrameAnimation();
+
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) restartFrameAnimation();
+});
 
 function openInvitation() {
   invitation.classList.add("is-open");
