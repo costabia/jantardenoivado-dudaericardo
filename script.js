@@ -5,7 +5,7 @@ function restartFrameAnimation() {
   const current = document.querySelector(".frame-animation");
   if (!current) return;
 
-  // Reassigning the URL with a cache-busting query forces animated GIFs
+  // Reassigning the URL with a cache-busting query forces the animated SVG
   // to start from frame one on every page load, including mobile browsers.
   current.src = `assets/frame-animation.svg?restart=${Date.now()}`;
 }

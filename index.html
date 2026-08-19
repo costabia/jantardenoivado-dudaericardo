@@ -18,7 +18,7 @@
     <title>Save the date · Maria Eduarda &amp; Ricardo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -28,7 +28,7 @@
         <p class="eyebrow">save the date</p>
         <h1 class="names names--cover">Maria Eduarda <span>&amp;</span> Ricardo</h1>
         <div class="machine" aria-hidden="true">
-            <img class="frame-animation" src="assets/frame-animation.svg" alt="" loading="eager" fetchpriority="high" />
+          <img class="frame-animation" src="assets/frame-animation.svg" alt="" loading="eager" fetchpriority="high" />
         </div>
         <button class="open-button" id="openButton" type="button" aria-label="Clique para abrir convite">clique para abrir convite</button>
       </section>
@@ -36,14 +36,22 @@
         <div class="paperwork">
           <article class="save-card">
             <p class="save-card__tiny">JANTAR DE NOIVADO</p>
-            <img src="assets/couple-photo.png" alt="Maria Eduarda e Ricardo" />
+            <img src="assets/main-couple.png" alt="Maria Eduarda e Ricardo" />
             <div class="save-card__title"><span>SAVE</span> <small>THE</small> <span>DATE</span></div>
             <p class="save-card__names">MARIA EDUARDA &amp; RICARDO</p>
           </article>
           <article class="letter-card">
             <p class="letter-card__cinzel">convidamos vocês para nosso</p>
             <p class="letter-card__script">Jantar de Noivado</p>
-            <p class="letter-card__date">03 de outubro de 2026 às 20h<small>blumenau-sc</small></p>
+            <p class="letter-card__date">03 de outubro de 2026 às 20h</p>
+            <address class="letter-card__address">
+              Residencial Torre Del Greco <br>
+              Rua Industrial Leopoldo Schmalz, 50<br />
+              Sete de Setembro<br />
+              Gaspar, SC
+            </address>
+            <a class="directions-button" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.%20Industrial%20L.%20Schmalz%2C%2050%20-%20Sete%20de%20Setembro%2C%20Gaspar%20-%20SC%2C%2089114-742" target="_blank" rel="noopener">como chegar</a>
+            <p class="letter-card__rsvp">confirmar presença até <br> 03 de setembro</p>
           </article>
           <img class="detail-strip" src="assets/photobooth.png" alt="Fotos de Maria Eduarda e Ricardo" />
           
@@ -51,6 +59,9 @@
         </div>
       </section>
     </main>
+    <footer class="site-credit" aria-label="Instagram do Studio Cora">
+      <a href="https://www.instagram.com/studiocoraoficial/" target="_blank" rel="noopener">@STUDIOCORAOFICIAL</a>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>
